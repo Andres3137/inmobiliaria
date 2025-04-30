@@ -3,25 +3,32 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "inmobiliaria";
-$fechavis = $_POST['fecha_vis'];
-$cod_cli = $_POST['cod_cli'];
-$cod_emp = $_POST['cod_emp'];
-$cod_inm = $_POST['cod_inm'];
-$comenta_vis = $_POST['comenta_vis'];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error){
-    die("connection failed:" . $conn->connect_error);
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 
-$sql = "DELETE FROM visitas  WHERE fecha_vis='$fechavis'";
+// Verificar que se recibió cod_vis
+if (isset($_POST['cod_vis'])) {
+    $cod_vis = $_POST['cod_vis'];
 
-if($conn->query($sql)=== TRUE) {
-    echo "listo a eliminado los datos de la visita";
-}else{
-    echo"error no funciono :" . $conn->error;
+    $stmt = $conn->prepare("DELETE FROM visitas WHERE cod_vis = ?");
+    $stmt->bind_param("i", $cod_vis);
+
+    if ($stmt->execute()) {
+        echo "<p>✅ Visita eliminada correctamente.</p>";
+    } else {
+        echo "<p>❌ Error al eliminar la visita: " . $stmt->error . "</p>";
+    }
+
+    $stmt->close();
+} else {
+    echo "<p>❌ No se recibió el código de la visita para eliminar.</p>";
 }
+
 $conn->close();
-
 ?>
+<a href="visitas.php">Volver a la lista</a>
