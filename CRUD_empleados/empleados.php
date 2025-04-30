@@ -103,7 +103,7 @@
             // Comprobamos si existen cargos y generamos las opciones
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['cod_ofi'] . "'>" . $row['nom_cargo'] . "</option>";
+                    echo "<option value='" . $row['cod_ofi'] . "'>" . $row['nom_ofi'] . "</option>";
                 }
             } else {
                 echo "<option value=''>No hay oficinas registradas</option>";
