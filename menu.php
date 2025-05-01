@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menú de Navegación</title>
     <link rel="stylesheet" href="estilos.css">
+
 </head>
 <body>
-    <fieldset>
-    
+<fieldset class="menu-navegacion">
+    <legend>Menú</legend>
+    <h1>Menú de navegación</h1>
 
-    <butt type="button" value="oficinas" name="oficinas" id="oficinas" placeholder="oficinas" required><br><br>
-    
-    <input type="button" value="cargos" id="cargos" name="cargos" placeholder="cargos" required><br><br>
+    <div class="botones-menu">
+        <input type="button" value="Oficinas" id="oficinas"
+        onclick="location.href='Oficinas/oficina_crud.php'"><br>
 
-    <input type="button" value="empleados" name="empleados" id="empleados" placeholder="empleados" required><br><br>
+        <input type="button" value="Cargos" id="cargos" onclick="location.href='CRUD_cargos/cargos.php'"><br>
 
-    <input type="button" value="clientes" id="clientes" name="clientes" placeholder="clientes" required><br><br>
+        <input type="button" value="Empleados" id="empleados" onclick="location.href='CRUD_empleados/empleados.php'"><br>
 
-    <input type="button" value="inmuebles" name="inmuebles" id="inmuebles" placeholder="inmuebles" required><br><br>
+        <input type="button" value="Clientes" id="clientes"><br>
 
-    <input type="button"value="tipo de inmuebles" name="tipo de inmuebles" id="tipo de inmuebles" placeholder="tipo de inmuebles" required><br><br>
+        <input type="button" value="Inmuebles" id="inmuebles" onclick="location.href='Inmuebles/inmueble_crud.php'" ><br>
 
-    <input type="button" value="propietarios" name="propietarios" id="propietarios" placeholder="propietarios" required><br><br>
+        <input type="button" value="Tipo de inmuebles" id="tipo_inmuebles" onclick="location.href='Tipo-De-Inmuebles/tipo_inmueble_crud.php'"><br>
+        
+        <input type="button" value="Propietarios" id="propietarios" onclick="location.href='Propietarios/propietario_crud.php'"><br>
 
-    <input type="button" value="contratos" name="contratos" id="contratos" placeholder="contratos" required><br><br>
+        <input type="button" value="Contratos" id="contratos" onclick="location.href='Contratos/contrato_crud.php'"><br>
 
-    <input type="button" value="visitas" name="visitas" id="visitas" placeholder="visitas" required><br><br>
+        <input type="button" value="Visitas" id="visitas" onclick="location.href='Visitas/visita_crud.php'"><br>
 
-    <input type="button" value="inspecciones" name="inspecciones" id="inspecciones" placeholder="inspecciones" required><br><br>
-    
+        <input type="button" value="Inspecciones" id="inspecciones" onclick="location.href='Inspecciones/inspeccion_crud.php'">
+    </div>
 </fieldset>
+
 </body>
 </html>

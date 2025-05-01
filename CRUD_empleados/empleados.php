@@ -18,17 +18,33 @@ if ($conn->connect_error) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Empleados</title>
-    <link rel="stylesheet" href=".css"> <!-- Usa tu mismo CSS -->
+    <link rel="stylesheet" href="../estilos.css"> <!-- Usa tu mismo CSS -->
 </head>
 
 <body>
-    <h2>Registro de empleados</h2>
+    
     <form action="guardar_empleado.php" method="POST">
+    <h2>Registro de empleados</h2>
         <label>Nombre empleado:</label>
         <input type="text" name="nombre_empleado" required>
 
         <label>Tipo de documento:</label>
-        <input type="text" name="tipo_doc">
+        <select name="tipo_doc" id="tipo_doc">
+            <option value="">Selecciona</option>
+            
+            <?php
+            $sqlEnum = "SHOW COLUMNS FROM empleados LIKE 'tipo_doc'";
+            $resultEnum = $conn->query($sqlEnum);
+            $rowEnum = $resultEnum->fetch_assoc();
+            preg_match("/^enum\((.*)\)$/", $rowEnum['Type'], $matches);
+            $enumValues = explode(",", $matches[1]);
+            foreach ($enumValues as $value) {
+                $cleanValue = trim($value, "'");
+                echo "<option value='$cleanValue'>$cleanValue</option>";
+            }
+            ?>
+            
+        </select>
 
         <label>Cédula:</label>
         <input type="text" name="cedula_empleado">
@@ -105,7 +121,8 @@ if ($conn->connect_error) {
 
         <input type="submit" value="Agregar empleado">
     </form>
-
+    
+    <form action="" class="consulta-empleado" >
     <h2>Lista de empleados</h2>
     <table>
         <tr>
@@ -154,6 +171,8 @@ if ($conn->connect_error) {
         $conn->close();
         ?>
     </table>
+    </form>
+    
 </body>
 
 </html>
