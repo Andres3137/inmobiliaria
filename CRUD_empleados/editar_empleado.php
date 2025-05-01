@@ -1,5 +1,5 @@
 <?php
-include '../CRUD_cargos/conexion.php';
+include '../conexion.php';
 
 $cod_emp = $_GET['id'];
 

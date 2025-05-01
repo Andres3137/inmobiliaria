@@ -1,5 +1,5 @@
 <?php
-include '../CRUD_cargos/conexion.php';
+include '../conexion.php';
 
 // Obtener el ID del empleado desde el formulario
 if (isset($_POST['cod_emp'])) {

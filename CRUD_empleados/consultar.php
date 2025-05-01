@@ -1,5 +1,5 @@
 <?php
-include '../CRUD_cargos/conexion.php';
+include '../conexion.php';
 $name1 = $_POST['nombre_empleado'];
 
 

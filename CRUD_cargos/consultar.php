@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../conexion.php';
 $name1 = $_POST['nom_cargo'];
 
 

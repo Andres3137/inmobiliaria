@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../conexion.php';
 
 //sql to delete a record//
 $sql="DELETE FROM cargos WHERE nom_cargo='".$_POST['nom_cargo']."'";

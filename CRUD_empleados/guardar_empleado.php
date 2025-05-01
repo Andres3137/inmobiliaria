@@ -1,7 +1,7 @@
 
 
 <?php
-include '../CRUD_cargos/conexion.php';
+include '../conexion.php';
 
 
 

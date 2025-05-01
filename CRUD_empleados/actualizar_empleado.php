@@ -1,5 +1,5 @@
 <?php
-include '../CRUD_cargos/conexion.php';
+include '../conexion.php';
 
 // Verificar si se ha enviado el formulario
 if (isset($_POST['cod_emp'])) {

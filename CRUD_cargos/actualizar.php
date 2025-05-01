@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../conexion.php';
 
 // Verificar que los campos existen
 if (isset($_POST['nom_cargo']) && isset($_POST['nuevo_cargo'])) {
