@@ -29,11 +29,17 @@ $sql = "UPDATE propietarios SET tipo_empresa = ?, tipo_doc = ?, num_doc = ?, nom
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssisssssssi", $tipo_empresa, $tipo_doc, $num_doc, $nomb_propietario, $dic_propietario, $tel_propietario, $email_propietario, $contacto_prop, $tel_contacto, $email_contacto, $cod_propietarios);
 
-if ($stmt->execute()) {
-    echo "Proveedor actualizado correctamente";
-    echo "<br><a href='propietario_crud.php'>Volver a la lista</a>";
-}else {
-    echo "Error al actualizar el proveedor: " . $conn->error;
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+        alert('Propietario actualizado correctamente');
+        alert('Volviendo al formulario');
+        window.location.href = 'propietario_crud.php';
+    </script>";
+} else {
+    echo "<script>
+        alert('Error al eliminar: " . addslashes($conn->error) . "');
+        window.history.back();
+    </script>";
 }
 
 $stmt->close();

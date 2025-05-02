@@ -157,7 +157,17 @@ if ($conn->connect_error) {
                 echo "<td>" . htmlspecialchars($emp["nom_ofi"]) . "</td>";
                 echo "<td>";
                 echo '<a href="editar_empleado.php?id=' . urlencode($emp["cod_emp"]) . '">Editar</a> | ';
-                echo '<form action="eliminar.php" method="post" style="display:inline;" onsubmit="return confirm(\'¿Estás seguro de eliminar este empleado?\');">';
+                echo '<form action="eliminar.php" method="post" class="boton-form" style=" all: unset;
+                            background: none !important;
+                            color: inherit !important;
+                            box-shadow: none !important;
+                            border: none !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            font: inherit !important;
+                            outline: none !important;
+                            appearance: none !important;
+                            display: inline; " onsubmit="return confirm(\'¿Estás seguro de eliminar este empleado?\');">';
                 echo '<input type="hidden" name="cod_emp" value="' . htmlspecialchars($emp["cod_emp"]) . '">';
                 echo '<button type="submit">Eliminar</button>';
                 echo '</form>';

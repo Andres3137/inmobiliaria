@@ -31,10 +31,17 @@ $sql = "INSERT INTO inmuebles (di_inm, barrio_inm, ciudad_inm, departamento_inm,
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param("ssssddsssiiiissii", $direccion, $barrio, $ciudad, $departamento, $latitud, $longitud, $foto, $web_p1, $web_p2, $cod_tipoinm, $num_hab, $precio_alq, $cod_propietario, $caracteristica_inm, $notas_inm, $cod_emp, $cod_ofi);
 
-if ($stmt -> execute()) {
-    echo "Inmueble registrado exitosamente";
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+        alert('Inmueble registrado correctamente');
+        alert('Volviendo al formulario');
+        window.location.href = 'inmueble_crud.php';
+    </script>";
 } else {
-    echo "Error: " .$stmt -> error;
+    echo "<script>
+        alert('Error al eliminar: " . addslashes($conn->error) . "');
+        window.history.back();
+    </script>";
 }
 
 $stmt -> close();

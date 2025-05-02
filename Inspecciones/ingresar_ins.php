@@ -14,15 +14,18 @@ include '../conexion.php';
     $stmt->bind_param("ssssss", $fecha_ins, $cod_inm, $cod_emp, $comentario);
 
     // Execute the statement
-    if ($stmt->execute()) {
-        echo "Inspección registrada exitosamente.";
-        echo "<br><a href='consultar_ins.php'>Consultar Inspecciones</a>";
-        echo "<br><a href='inspeccion_crud.php'>Volver</a>";
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>
+            alert('Inspeccion registrado correctamente');
+            alert('Volviendo al formulario');
+            window.location.href = 'inspeccion_crud.php';
+        </script>";
     } else {
-        echo "Error al registrar la inspección: " . $stmt->error;
+        echo "<script>
+            alert('Error al eliminar: " . addslashes($conn->error) . "');
+            window.history.back();
+        </script>";
     }
-
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
 

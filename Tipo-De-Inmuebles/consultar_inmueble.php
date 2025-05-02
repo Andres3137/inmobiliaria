@@ -11,7 +11,7 @@ include '../conexion.php';
     <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
-    <form action="" class="consulta-tipo-inm">
+    <form action="" class="consultar">
     <h2>Inmuebles</h2>
 
     <table>
@@ -29,7 +29,7 @@ include '../conexion.php';
         echo "<td>" . $row["nom_tipoinm"] . "</td>";
         echo "<td>";
         echo "<a href='editar_inmueble.php?id=" . $row["cod_tipoinm"] . "'>Editar</a> | ";
-        echo "<form action='eliminar_inmueble.php' method='post' style='display:inline;' onsubmit='return confirm(\"¿Estás seguro de eliminar este proveedor?\");'>";
+        echo "<form action='eliminar_inmueble.php'  method='post'   style='all: unset; background: none !important;color: inherit !important; box-shadow: none !important;border: none !important;margin: 0 !important; padding: 0 !important;font: inherit !important; outline: none !important;appearance: none !important; display: inline;' onsubmit='return confirm(\"¿Estás seguro de eliminar este proveedor?\");'>";
         echo "<input type='hidden' name='cod_tipoinm' value='" . $row["cod_tipoinm"] . "'>";
         echo "<button type='submit'>Eliminar</button>";
         echo "</form>";

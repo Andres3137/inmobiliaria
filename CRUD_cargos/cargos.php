@@ -1,3 +1,9 @@
+<?php
+include '../conexion.php';
+
+$sql = "SELECT * FROM cargos";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD DE CARGOS   </title>
     <link rel="stylesheet" href="../estilos.css">
+    <style>
+        table{
+            margin-top: 35px;
+        }
+    </style>
 </head>
 <body>
 <form id="form" method="post" name="form">
@@ -17,10 +28,25 @@
             document.form.submit()" />
         <input type="button" value="Eliminar datos" id="eliminar" name="eliminar" onclick="document.form.action='eliminar.php';
             document.form.submit()" />
-        <input type="button" value="Consulta" id="consulta" name="consulta" onclick="document.form.action='consultar.php';
-            document.form.submit()" />
         <input type="button" value="Actualiza" id="actualiza" name="actualiza" onclick="document.form.action='crg_actualizar.php';
             document.form.submit()" />
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Nombre del Cargo</th>
+            </thead>
+            <tbody>
+            <?php if ($result -> num_rows > 0) {
+                while ($row = $result -> fetch_assoc()) {?>
+                    <tr>
+                        <td><?php echo $row['cod_cargo']; ?></td>
+                        <td><?php echo $row['nom_cargo']; ?></td>
+                    </tr>
+                <?php } 
+                
+                }?>
+            </tbody>
+    </table>
     </form>
 </body>
 </html>

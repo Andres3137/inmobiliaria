@@ -24,7 +24,7 @@ if (isset($_POST['cod_emp'])) {
     $email_contacto = $_POST['email_contacto'];
     $relacion_contacto = $_POST['relacion_contacto'];
     $cod_ofi = $_POST['cod_ofi'];
-    $observaciones = $_POST['observaciones'];
+    
 
     // Actualizar la base de datos
     $sql = "UPDATE empleados SET 
@@ -77,9 +77,16 @@ if (isset($_POST['cod_emp'])) {
         );
 
         if ($stmt->execute()) {
-            echo "Empleado actualizado exitosamente";
+            echo "<script>
+                alert('empleado actualizado correctamente');
+                alert('Volviendo al formulario');
+                window.location.href = 'empleados.php';
+            </script>";
         } else {
-            echo "Error al actualizar el empleado: " . $stmt->error;
+            echo "<script>
+                alert('Error al eliminar: " . addslashes($conn->error) . "');
+                window.history.back();
+            </script>";
         }
 
         $stmt->close();

@@ -46,7 +46,7 @@ include '../conexion.php';
         echo "<td>" . $row["email_contacto"] . "</td>";
         echo "<td>";
         echo "<a href='editar_propietario.php?id=" . $row["cod_propietarios"] . "'>Editar</a> | ";
-        echo "<form action='eliminar_propietario.php' method='post' style='display:inline;' onsubmit='return confirm(\"¿Estás seguro de eliminar este proveedor?\");'>";
+        echo "<form action='eliminar_propietario.php' method='post'  style='all: unset;background: none !important;color: inherit !important;box-shadow: none !important;border: none !important; margin: 0 !important;padding: 0 !important; font: inherit !important;outline: none !important;appearance: none !important;display: inline;' onsubmit='return confirm(\"¿Estás seguro de eliminar este proveedor?\");'>";
         echo "<input type='hidden' name='cod_propietarios' value='" . $row["cod_propietarios"] . "'>";
         echo "<button type='submit'>Eliminar</button>";
         echo "</form>";

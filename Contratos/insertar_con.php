@@ -23,14 +23,17 @@ $sql="INSERT INTO contratos (cod_cli, fecha_con, fecha_ini, fecha_fin, meses, va
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("isssiiisss", $cliente, $fecha_contrato, $fecha_inicio, $fecha_fin, $meses, $valor_contrato, $deposito_contrato, $metodo_pago, $dato_pago, $archivo_contrato);
 
-if ($stmt->execute()) {
-    echo "<script>alert('Contrato registrado exitosamente.');</script>";
-    // 
-    echo "Contrato registrado exitosamente.";
-    header("Location: contrato_crud.php");
-    exit();
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+        alert('Contrato registrado correctamente');
+        alert('Volviendo al formulario');
+        window.location.href = 'contrato_crud.php';
+    </script>";
 } else {
-    echo "Error al registrar el contrato: " . $stmt->error;
+    echo "<script>
+        alert('Error al eliminar: " . addslashes($conn->error) . "');
+        window.history.back();
+    </script>";
 }
 $stmt->close();
 $conn->close();

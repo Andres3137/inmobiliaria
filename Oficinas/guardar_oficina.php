@@ -22,11 +22,17 @@ $stmt->bind_param("ssssdds", $nombre, $direccion, $telefono, $email, $latitud, $
 
 
 
-if ($stmt->execute()){
-    echo "Oficina guardado correctamente <br><br>";
-    echo "<a href='oficina_crud.php'>Volver</a>";
-}else{
-    echo "Error al guardar el oficina".$stmt->error;
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+        alert('Oficina registrado correctamente');
+        alert('Volviendo al formulario');
+        window.location.href = 'oficina_crud.php';
+    </script>";
+} else {
+    echo "<script>
+        alert('Error al eliminar: " . addslashes($conn->error) . "');
+        window.history.back();
+    </script>";
 }
 $stmt->close();
 $conn->close();

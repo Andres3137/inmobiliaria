@@ -19,37 +19,25 @@ form {
     width: 100%;
     max-width: 500px;
 }
-.consulta-empleado{
+
+.consultar{
     margin-left: 10px;
     max-width: 100%;
     display: inline-block;
     overflow-x: auto;
     white-space: nowrap;
 }
-.consulta-propie{
-    margin-left: 10px;
-    max-width: 100%;
-    display: inline-block;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.consulta-visitas{
-    margin-left: 10px;
-    max-width: 100%;
-    display: inline-block;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.consulta-tipo-inm button{
-    background-color: none;
-    color: none;
-    border: none;
-    padding: none;
-    border-radius: 6px;
-    font-size: none;
-    cursor: pointer;
-    margin: 0 0 0 0;
-    transition: background-color 0.3s ease;
+.consultar button{
+    all: unset;
+    margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  box-shadow: none;
+  outline: none;
+  text-decoration: none
 }
 fieldset {
     border: 2px solid #2c3e50;

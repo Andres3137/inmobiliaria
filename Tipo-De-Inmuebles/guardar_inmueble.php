@@ -20,6 +20,7 @@ $stmt->bind_param("s", $inmueble);
 
 if ($stmt->execute()) {
     echo "Inmueble resgistrado con exito.";
+    
 }else {
     echo "Error al registrar el propietario: " . $conn->error;
 }

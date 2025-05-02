@@ -44,12 +44,15 @@ $emp = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <title>Editar Empleado</title>
-    <link rel="stylesheet" href="style.css"> <!-- Usa tu mismo CSS -->
+    <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
-    <h2>Editar empleado</h2>
+   
 
     <form action="actualizar_empleado.php" method="POST">
+    <h1>Editar empleado</h1>
+        <fieldset>
+        <legend>Datos del empleado</legend>
         <input type="hidden" name="cod_emp" value="<?php echo htmlspecialchars($emp['cod_emp']); ?>">
 
         <label>Nombre empleado:</label>
@@ -102,7 +105,9 @@ $emp = $result->fetch_assoc();
 
         <label>Fecha de retorno:</label>
         <input type="date" name="fecha_ret" value="<?php echo htmlspecialchars($emp['fecha_ret']); ?>">
-
+        </fieldset>
+        <fieldset>
+        <legend>Contacto</legend>
         <label>Nombre contacto:</label>
         <input type="text" name="nom_contacto" value="<?php echo htmlspecialchars($emp['nom_contacto']); ?>">
 
@@ -117,7 +122,7 @@ $emp = $result->fetch_assoc();
 
         <label>Relación contacto:</label>
         <input type="text" name="relacion_contacto" value="<?php echo htmlspecialchars($emp['relacion_contacto']); ?>">
-
+        </fieldset>
         <label>Oficina:</label>
         <select name="cod_ofi" required>
             <option value="">Seleccionar oficina</option>
@@ -129,9 +134,6 @@ $emp = $result->fetch_assoc();
             }
             ?>
         </select>
-
-        <label>Observaciones:</label>
-        <textarea name="observaciones"><?php echo htmlspecialchars($emp['observaciones']); ?></textarea><br>
 
         <input type="submit" value="Actualizar empleado">
     </form>

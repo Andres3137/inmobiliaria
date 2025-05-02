@@ -73,7 +73,7 @@ if ($conn->connect_error) {
 
     </form>
 
-    <form action="" class="consulta-visitas">
+    <form action="" class="consultar">
     <h2>Lista de visitas</h2>
     <table>
         <tr>
@@ -111,7 +111,18 @@ if ($conn->connect_error) {
                 echo "<td>" . htmlspecialchars($row["comenta_vis"]) . "</td>";
                 echo "<td>";
                 echo '<a href="editar_visita.php?id=' . urlencode($row["cod_vis"]) . '">Editar</a> | ';
-                echo '<form action="eliminar_visita.php" method="post" style="display:inline;" onsubmit="return confirm(\'¿Estás seguro de eliminar esta visita?\');">';
+                echo '<form action="eliminar_visita.php" class="boton-form" method="post"  style=" 
+                            all: unset;
+                            background: none !important;
+                            color: inherit !important;
+                            box-shadow: none !important;
+                            border: none !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            font: inherit !important;
+                            outline: none !important;
+                            appearance: none !important;
+                            display: inline;" onsubmit="return confirm(\'¿Estás seguro de eliminar esta visita?\');">';
                 echo '<input type="hidden" name="cod_vis" value="' . htmlspecialchars($row["cod_vis"]) . '">';
                 echo '<button type="submit">Eliminar</button>';
                 echo '</form>';

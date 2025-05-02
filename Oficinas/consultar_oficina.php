@@ -49,7 +49,8 @@ $result = $conn->query($sql);
 
                             <?php } ?>
                         </td>
-                       
+                       <td><a href="">eliminar</a>
+                        </td>
                     </tr>
                 <?php }
             }else{ ?>
