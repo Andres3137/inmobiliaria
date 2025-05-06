@@ -20,7 +20,7 @@
 
         <input type="button" value="Empleados" id="empleados" onclick="location.href='CRUD_empleados/empleados.php'"><br>
 
-        <input type="button" value="Clientes" id="clientes"><br>
+        <input type="button" value="Clientes" id="clientes" onclick="location.href='clientes/clientes.php'"><br>
 
         <input type="button" value="Inmuebles" id="inmuebles" onclick="location.href='Inmuebles/inmueble_crud.php'" ><br>
 

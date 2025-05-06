@@ -8,33 +8,36 @@ $longitud = $_POST['longitud'];
 $email = $_POST['email'];
 $telefono = $_POST['telefono'];
 
-
-
 $foto = null;
-if (!empty($_FILES['foto']['name'])){
-    $foto = "uploads/". basename($_FILES['foto']['name']);
+if (!empty($_FILES['foto']['name'])) {
+    $foto = "uploads/" . basename($_FILES['foto']['name']);
     move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
 }
 
-$sql = "INSERT INTO oficinas(nom_ofi, dic_ofi, tel_ofi, email_ofi, latitud, longitud, foto_ofi) VALUES (?,?,?,?,?,?,?)";
+$sql = "INSERT INTO oficinas(nom_ofi, dic_ofi, tel_ofi, email_ofi, latitud, longitud, foto_ofi) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssdds", $nombre, $direccion, $telefono, $email, $latitud, $longitud, $foto );
 
+if (!$stmt) {
+    die("Error al preparar la consulta: " . $conn->error);
+}
 
+// Vincular parámetros con tipos correctos
+// s = string, d = double (para latitud y longitud)
+$stmt->bind_param("ssssdds", $nombre, $direccion, $telefono, $email, $latitud, $longitud, $foto);
 
-if ($conn->query($sql) === TRUE) {
+// Ejecutar la consulta
+if ($stmt->execute()) {
     echo "<script>
-        alert('Oficina registrado correctamente');
-        alert('Volviendo al formulario');
+        alert('Oficina registrada correctamente');
         window.location.href = 'oficina_crud.php';
     </script>";
 } else {
     echo "<script>
-        alert('Error al eliminar: " . addslashes($conn->error) . "');
+        alert('Error al guardar: " . addslashes($stmt->error) . "');
         window.history.back();
     </script>";
 }
+
 $stmt->close();
 $conn->close();
-
 ?>
