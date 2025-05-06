@@ -31,7 +31,7 @@ $sql = "INSERT INTO inmuebles (di_inm, barrio_inm, ciudad_inm, departamento_inm,
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param("ssssddsssiiiissii", $direccion, $barrio, $ciudad, $departamento, $latitud, $longitud, $foto, $web_p1, $web_p2, $cod_tipoinm, $num_hab, $precio_alq, $cod_propietario, $caracteristica_inm, $notas_inm, $cod_emp, $cod_ofi);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo "<script>
         alert('Inmueble registrado correctamente');
         alert('Volviendo al formulario');

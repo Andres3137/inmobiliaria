@@ -39,6 +39,7 @@ $result = $conn -> query($sql);
                 <th>Notas</th>
                 <th>Empleado</th>
                 <th>Oficina</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -56,7 +57,7 @@ $result = $conn -> query($sql);
                         <td>
                             <?php if ($row['foto']) { ?>
                                 <img src="<?php echo $row['foto']; ?>" alt="Foto del Almacen" width="100" height="100">
-                            <?php}  else { ?>
+                            <?php }  else { ?>
                                 Sin foto
                             <?php } ?>
                         </td>
@@ -71,6 +72,11 @@ $result = $conn -> query($sql);
                         <td><?php echo $row['notas_inm']; ?></td>
                         <td><?php echo $row['cod_emp']; ?></td>
                         <td><?php echo $row['cod_ofi']; ?></td>
+                        <td>
+                        <a href="editar_inm.php?cod_inm=<?= $row['cod_inm'] ?>">Editar</a>
+                        <a href="eliminar_inmu.php?cod_inm=<?= $row['cod_inm'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este inmueble?')">Eliminar</a>
+
+                        </td>
                     </tr>
                 <?php }
             } else { ?>

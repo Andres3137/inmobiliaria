@@ -25,9 +25,18 @@ $rowEnum = $enumQuery->fetch_assoc();
 preg_match("/^enum\((.*)\)$/", $rowEnum['Type'], $matches);
 $enumValues = explode(",", $matches[1]);
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
 
-<h2>Editar Cliente</h2>
 <form action="actualizar_cliente.php" method="POST">
+<h2>Editar Cliente</h2>
     <input type="hidden" name="cod_cli" value="<?= $cliente['cod_cli'] ?>">
 
     <label>Nombre:</label>
@@ -83,3 +92,6 @@ $enumValues = explode(",", $matches[1]);
 
     <input type="submit" value="Actualizar Cliente">
 </form>
+
+</body>
+</html>
