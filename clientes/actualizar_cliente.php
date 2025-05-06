@@ -29,7 +29,7 @@ $sql = "UPDATE clientes SET
     WHERE cod_cli = $cod_cli";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: listar_clientes.php");
+    header("Location: clientes.php");
 } else {
     echo "Error al actualizar: " . $conn->error;
 }

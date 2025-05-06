@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../conexion.php';
 
 // Verifica si llegaron los datos esperados
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         echo "Cliente agregado exitosamente.";
-        header("Location: listar_clientes.php");
+        header("Location: clientes.php");
         exit;
     } else {
         echo "Error al guardar el cliente: " . $conn->error;
