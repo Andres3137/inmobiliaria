@@ -52,10 +52,12 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <title>Editar Visita</title>
+    <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
-    <h2>Editar Visita</h2>
+    
     <form action="actualizar_visita.php" method="post">
+    <h2>Editar Visita</h2>
         <!-- Campo oculto con el ID de la visita -->
         <input type="hidden" name="cod_vis" value="<?php echo $visita['cod_vis']; ?>">
 

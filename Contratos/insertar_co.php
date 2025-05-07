@@ -23,7 +23,9 @@ $sql="INSERT INTO contratos (cod_cli, fecha_con, fecha_ini, fecha_fin, meses, va
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("isssiiisss", $cliente, $fecha_contrato, $fecha_inicio, $fecha_fin, $meses, $valor_contrato, $deposito_contrato, $metodo_pago, $dato_pago, $archivo_contrato);
 
-if ($conn->query($sql) === TRUE) {
+
+if ($stmt->execute()) {
+
     echo "<script>
         alert('Contrato registrado correctamente');
         alert('Volviendo al formulario');

@@ -18,7 +18,7 @@ $stmt = $conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param("i", $cod_propietarios);
     if ($stmt->execute()) {
-        echo "<script>alert('Proveedor eliminado correctamente.'); window.location.href='propietario_crud.php';</script>";
+        echo "<script>alert('Propietarios eliminado correctamente.'); window.location.href='propietario_crud.php';</script>";
     } else {
         echo "Error al eliminar el proveedor: " . $stmt->error;
     }

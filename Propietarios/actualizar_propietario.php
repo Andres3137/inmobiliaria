@@ -29,7 +29,7 @@ $sql = "UPDATE propietarios SET tipo_empresa = ?, tipo_doc = ?, num_doc = ?, nom
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssisssssssi", $tipo_empresa, $tipo_doc, $num_doc, $nomb_propietario, $dic_propietario, $tel_propietario, $email_propietario, $contacto_prop, $tel_contacto, $email_contacto, $cod_propietarios);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo "<script>
         alert('Propietario actualizado correctamente');
         alert('Volviendo al formulario');

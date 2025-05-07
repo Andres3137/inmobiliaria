@@ -38,7 +38,7 @@ $stmt = $conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param("i", $cod_tipoinm);
     if ($stmt->execute()) {
-        echo "<script>alert('Proveedor eliminado correctamente.'); window.location.href='propietario.php';</script>";
+        echo "<script>alert('Proveedor eliminado correctamente.'); window.location.href='consultar_inmueble.php';</script>";
     } else {
         echo "Error al eliminar el proveedor: " . $stmt->error;
     }

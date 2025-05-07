@@ -1,28 +1,27 @@
 <?php
 include '../conexion.php';
 
-    $cod_inm = $_POST['cod_inm'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cod_ins = $_POST['cod_ins'];
     $fecha_ins = $_POST['fecha_ins'];
+    $cod_inm = $_POST['cod_inm'];
     $cod_emp = $_POST['cod_emp'];
     $comentario = $_POST['comentario'];
 
-    // Prepare and bind
-    $sql = "INSERT INTO inspeccion (fecha_ins, cod_inm, cod_emp, comentario) VALUES (?, ?, ?, ?)";
+    $sql = "UPDATE inspeccion SET fecha_ins = ?, cod_inm = ?, cod_emp = ?, comentario = ? WHERE cod_ins = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("siss", $fecha_ins, $cod_inm, $cod_emp, $comentario);
+        $stmt->bind_param("sissi", $fecha_ins, $cod_inm, $cod_emp, $comentario, $cod_ins);
 
-        // Execute the statement
         if ($stmt->execute()) {
             echo "<script>
-                alert('Inspección registrada correctamente');
-                alert('Volviendo al formulario');
+                alert('Inspección actualizada correctamente');
                 window.location.href = 'consultar_ins.php';
             </script>";
         } else {
             echo "<script>
-                alert('Error al registrar la inspección: " . addslashes($stmt->error) . "');
+                alert('Error al actualizar la inspección: " . addslashes($stmt->error) . "');
                 window.history.back();
             </script>";
         }
@@ -33,5 +32,9 @@ include '../conexion.php';
             window.history.back();
         </script>";
     }
-    $conn->close();
+} else {
+    echo "Acceso no permitido.";
+}
+
+$conn->close();
 ?>

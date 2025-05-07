@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 $sql = "INSERT INTO cargos (nom_cargo) VALUES ('$name1')";
 
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo "<script>
         alert('Nuevo Cargo Agregado Exitosamente');
         alert('Volviendo al formulario');

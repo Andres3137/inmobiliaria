@@ -12,7 +12,7 @@ include '../conexion.php';
 </head>
 <body>
     
-<form action="insertar_contrato.php" enctype="multipart/form-data" method="POST">
+<form action="insertar_co.php" enctype="multipart/form-data" method="POST">
     <h1>Contratos</h1><br><br>
 
     <fieldset>

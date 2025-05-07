@@ -28,6 +28,7 @@
             <th>Metodo de Pago</th>
             <th>Dato de Pago</th>
             <th>Archivo del Contrato</th>
+            <th>Acciones</th>
         </tr>
 
         <?php
@@ -50,7 +51,12 @@
                 echo "<td>" . $row['metodo_pago_con'] . "</td>";
                 echo "<td>" . $row['dato_pago'] . "</td>";
                 echo "<td><a href='" . $row['archivo_con'] . "' target='_blank'>Ver Archivo</a></td>";
+                echo '<td>';
+                echo '<a href="editar_co.php?cod_con=' . $row['cod_con'] . '">Editar</a> | ';
+                echo '<a href="eliminar_co.php?cod_con=' . $row['cod_con'] . '" onclick="return confirm(\'¿Seguro que deseas eliminar este contrato?\')">Eliminar</a>';
+                echo '</td>';
                 echo "</tr>";
+
             }
         } else {
             echo "<tr><td colspan='11'>No se encontraron contratos.</td></tr>";
