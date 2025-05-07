@@ -2,24 +2,44 @@
 include '../conexion.php';
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $cod_propietarios = $_GET['id'];
+    $query = "SELECT * FROM propietarios WHERE cod_propietarios = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $cod_propietarios);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $propietario = $result->fetch_assoc();
 
-    $sql = "SELECT * FROM propietarios WHERE cod_propietarios = '$id'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-        $propietario = $result->fetch_assoc(); // Cambiado de $row a $propietario para usarlo luego
-    } else {
+    if (!$propietario) {
         echo "Propietario no encontrado.";
-        exit;
+        exit();
     }
 } else {
-    echo "ID no proporcionado.";
-    exit;
+    echo "ID de propietario no proporcionado.";
+    exit();
 }
+
+// Función para obtener los valores de un enum
+function getEnumValues($conn, $table, $column) {
+    $sql = "SHOW COLUMNS FROM $table LIKE '$column'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    preg_match("/^enum\((.*)\)$/", $row['Type'], $matches);
+    $enumValues = explode(",", $matches[1]);
+    return array_map(function($value) {
+        return trim($value, "'");
+    }, $enumValues);
+}
+
+// Obtener los valores del enum para tipo_empresa
+$tipoEmpresaValues = getEnumValues($conn, 'propietarios', 'tipo_empresa');
+
+// Obtener los valores del enum para tipo_doc
+$tipoDocValues = getEnumValues($conn, 'propietarios', 'tipo_doc');
 ?>
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,47 +47,58 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
-   
     <form action="actualizar_propietario.php" method="post">
-    <h2>Editar Propietario</h2>
+        <h1>Editar Propietario</h1>
         <input type="hidden" name="cod_propietarios" value="<?php echo $propietario['cod_propietarios']; ?>">
 
-        <label>Nombre del propietario</label>
-        <input type="text" name="nombre_propietario" value="<?php echo $propietario['nomb_propietario']; ?>">
+        <label for="tipo_empresa">Tipo de empresa:</label>
+        <select name="tipo_empresa" id="tipo_empresa">
+            <option value="">Seleccionar</option>
+            <?php
+            foreach ($tipoEmpresaValues as $value) {
+                $selected = ($value == $propietario['tipo_empresa']) ? 'selected' : '';
+                echo "<option value='$value' $selected>$value</option>";
+            }
+            ?>
+        </select><br><br>
 
-        <label>Tipo de empresa:</label>
-        <input type="text" name="tipo_empresa" value="<?php echo $propietario['tipo_empresa']; ?>">
+        <label for="tipo_documento">Tipo de documento:</label>
+        <select name="tipo_documento" id="tipo_documento">
+            <option value="">Seleccionar</option>
+            <?php
+            foreach ($tipoDocValues as $value) {
+                $selected = ($value == $propietario['tipo_doc']) ? 'selected' : '';
+                echo "<option value='$value' $selected>$value</option>";
+            }
+            ?>
+        </select><br><br>
 
-        <label>Tipo de documento:</label>
-        <input type="text" name="tipo_documento" value="<?php echo $propietario['tipo_doc']; ?>">
+        <label for="numero_documento">Número de documento:</label>
+        <input type="text" name="numero_documento" id="numero_documento" value="<?php echo $propietario['num_doc']; ?>"><br><br>
 
-        <label>Numero de documento:</label>
-        <input type="text" name="numero_documento" value="<?php echo $propietario['num_doc']; ?>">
+        <label for="nombre_propietario">Nombre del propietario:</label>
+        <input type="text" name="nombre_propietario" id="nombre_propietario" value="<?php echo $propietario['nomb_propietario']; ?>"><br><br>
 
-        <label>Dirección del propietario:</label>
-        <input type="text" name="direccion" value="<?php echo $propietario['dic_propietario']; ?>">
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" id="direccion" value="<?php echo $propietario['dic_propietario']; ?>"><br><br>
 
-        <label>Telefono del propietario:</label>
-        <input type="text" name="telefono_propietario" value="<?php echo $propietario['tel_propietario']; ?>">
+        <label for="telefono_propietario">Teléfono del propietario:</label>
+        <input type="text" name="telefono_propietario" id="telefono_propietario" value="<?php echo $propietario['tel_propietario']; ?>"><br><br>
 
-        <label>Email del propietario:</label>
-        <input type="email" name="email_propietario" value="<?php echo $propietario['email_propietario']; ?>">
+        <label for="email_propietario">Email del propietario:</label>
+        <input type="email" name="email_propietario" id="email_propietario" value="<?php echo $propietario['email_propietario']; ?>"><br><br>
 
-        <label>Contacto del propietario:</label>
-        <input type="text" name="contacto_propietario" value="<?php echo $propietario['contacto_prop']; ?>">
+        <label for="contacto_propietario">Contacto del propietario:</label>
+        <input type="text" name="contacto_propietario" id="contacto_propietario" value="<?php echo $propietario['contacto_prop']; ?>"><br><br>
 
-        <label>Telefono contacto:</label>
-        <input type="text" name="telefono_contacto" value="<?php echo $propietario['tel_contacto']; ?>">
+        <label for="telefono_contacto">Teléfono contacto:</label>
+        <input type="text" name="telefono_contacto" id="telefono_contacto" value="<?php echo $propietario['tel_contacto']; ?>"><br><br>
 
-        <label>Email contacto:</label>
-        <input type="email" name="email_contacto" value="<?php echo $propietario['email_contacto']; ?>">
+        <label for="email_contacto">Email contacto:</label>
+        <input type="email" name="email_contacto" id="email_contacto" value="<?php echo $propietario['email_contacto']; ?>"><br><br>
 
-        <input type="submit" value="Actualizar Propietario">
-        <a href="propietario.php">Cancelar</a>
+        <input type="submit" value="Guardar Cambios">
+        <input type="button" value="Cancelar" onclick="window.location.href='propietario_crud.php'">
     </form>
 </body>
 </html>
-
-<?php
-$conn->close();
-?>

@@ -121,8 +121,7 @@ if ($conn->connect_error) {
 
         <input type="submit" value="Agregar empleado">
     </form>
-    
-    <form action="" class="consulta-empleado" >
+    <div class="tabla-container">
     <h2>Lista de empleados</h2>
     <table>
         <tr>
@@ -181,7 +180,8 @@ if ($conn->connect_error) {
         $conn->close();
         ?>
     </table>
-    </form>
+    </div>
+
     
 </body>
 
